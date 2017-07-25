@@ -133,9 +133,18 @@ function update(time = 0){
             player.pos3.x--;
             player.pos4.x--;
         }
-        if(pipeCollision(birdArena, player))
+        if(pipeCollision(birdArena, player)){
+	    button.style.display = "block";
             canvas.style.display = "none";
-        if(player.pos1.x === 12 && player.pos2.x === 12)
+	    player.score = 0;
+	    player.pos.x = 4;
+	    player.pos.y = 11;
+	    player.pos1.x = player.pos2.x = 25;
+	    player.pos1.y = player.pos2.y = 0;
+	    player.pipe3 = player.pipe4 = null;
+	    generatePipes(0);
+	}
+	if(player.pos1.x === 12 && player.pos2.x === 12)
             generatePipes(1);
         
         if(player.pos1.x === -1 && player.pos2.x === -1){
@@ -253,8 +262,3 @@ document.addEventListener('keydown', event => {
         flap();
     }
 });
-
-
-
-
-
